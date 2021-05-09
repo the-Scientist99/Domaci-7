@@ -15,9 +15,9 @@ class VehicleClassSeeder extends Seeder
     public static function run()
     {
         $classes = [
-            ['name' => 'mala'],
-            ['name' => 'srednja'],
-            ['name' => 'premium'],
+            ['name' => 'Mala'],
+            ['name' => 'Srednja'],
+            ['name' => 'Premium'],
         ];
 
         foreach ($classes as $class) {

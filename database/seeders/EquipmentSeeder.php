@@ -15,9 +15,9 @@ class EquipmentSeeder extends Seeder
     public static function run()
     {
         $equipments = [
-            ['name' => 'baby sjedište'],
+            ['name' => 'Baby sjedište'],
             ['name' => 'GPS uređaj'],
-            ['name' => 'zeleni karton'],
+            ['name' => 'Zeleni karton'],
         ];
 
         foreach ($equipments as $equipment) {
