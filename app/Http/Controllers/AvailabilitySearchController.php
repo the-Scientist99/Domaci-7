@@ -18,17 +18,20 @@ class AvailabilitySearchController extends Controller
     public function index(Request $request)
     {
         $res = Reservation::query()
-            ->when($request->filter_date_from, function ($query) use ($request) {
-                $date_from = $request->filter_date_from;
-                $query->whereRaw('date_from BETWEEN (?) AND date_to', [$date_from]);
+            ->when(request(['filter_date_from', 'filter_date_to']), function ($query) use ($request) {
+                $data = [
+                    $request->filter_date_from,
+                    $request->filter_date_to,
+                    $request->filter_date_from,
+                    $request->filter_date_to,
+                ];
+                $query->whereRaw('date_from NOT BETWEEN (?) AND (?) AND date_to NOT BETWEEN (?) AND (?)', $data);
             })
-            ->when($request->filter_date_to, function ($query) use ($request) {
-                $date_to = $request->filter_date_to;
-                $query->whereRaw("date_to BETWEEN date_from AND (?)", [$date_to]);
-            })
-            ->get();
-
-
+            // ->when($request->filter_date_to, function ($query) use ($request) {
+            //     $date_to = $request->filter_date_to;
+            //     $query->whereRaw("date_to NOT BETWEEN date_from AND (?)", [$date_to]);
+            // })
+            ->paginate(Reservation::PER_PAGE);
         $data = [
             'veh_classes' => VehicleClass::all(),
             'reservations' => $res,

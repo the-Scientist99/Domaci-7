@@ -9,6 +9,8 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    const PER_PAGE = 10;
+
     protected $guarded = [];
 
     public function client()

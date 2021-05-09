@@ -24,12 +24,12 @@ class VehicleRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:2',
-            'date_of_prod' => 'date',
-            'class_id' => 'required|int',
-            'num_of_seats' => 'min:1|max:8',
-            'price_per_day' => 'required|numeric',
-            'vehicle_photo' => 'image',
+            // 'name' => 'required|min:2',
+            // 'date_of_prod' => 'date',
+            // 'class_id' => 'required|int',
+            // 'num_of_seats' => 'min:1|max:8',
+            // 'price_per_day' => 'required|numeric',
+            // 'vehicle_photo' => 'image',
         ];
     }
 }

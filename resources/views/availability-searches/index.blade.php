@@ -33,7 +33,6 @@
                 </div>
             </div>
         </form>
-
         <table class="table table-hover text-center mt-3">
             <thead>
                 <tr>
@@ -47,7 +46,19 @@
             <tbody>
                 @foreach ($reservations as $reservation)
                     <tr>
-                        <td> {{ $reservation->date_from }} </td>
+                        @if ( $reservation->vehicle->class->id == $request->filter_class)
+                            <td> {{ $reservation->vehicle->name }} </td>
+                            <td> {{ $reservation->vehicle->date_of_prod }} </td>
+                            <td> {{ $reservation->vehicle->class->name }} </td>
+                            <td> {{ $reservation->vehicle->num_of_seats }} </td>
+                            <td> {{ $reservation->vehicle->price_per_day }} </td>
+                        @elseif( !$request->filter_class || $request->filter_class == null)
+                            <td> {{ $reservation->vehicle->name }} </td>
+                            <td> {{ $reservation->vehicle->date_of_prod }} </td>
+                            <td> {{ $reservation->vehicle->class->name }} </td>
+                            <td> {{ $reservation->vehicle->num_of_seats }} </td>
+                            <td> {{ $reservation->vehicle->price_per_day }} </td>
+                        @endif
                     </tr>
                 @endforeach
             </tbody>
